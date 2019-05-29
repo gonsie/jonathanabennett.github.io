@@ -31,11 +31,11 @@
 <div class="post">
 <h1 class="post-title">Emacs.org ~ May 2019</h1>
 
-<div id="outline-container-org94a780f" class="outline-2">
-<h2 id="org94a780f">Coding Your Comments</h2>
-<div class="outline-text-2" id="text-org94a780f">
+<div id="outline-container-org55729bc" class="outline-2">
+<h2 id="org55729bc">Coding Your Comments</h2>
+<div class="outline-text-2" id="text-org55729bc">
 <p>
-When I decided to make the switch to rolling my own ~/.emac.d directory, I knew that I was going to end up seeing a lot of new code.
+When I decided to make the switch to rolling my own ~/.emacs.d directory, I knew that I was going to end up seeing a lot of new code.
 First, I've never set up emacs before, so there will be lots of new packages to learn and things like that.
 Second, I've never really used a Lisp before, so there would be lots of new things to learn there as well.
 I knew I needed a way to document all the stuff I was learning as I set this up.
@@ -53,9 +53,9 @@ Org-mode is seemingly custom-built for this.
 </div>
 </div>
 
-<div id="outline-container-orgf21cc7f" class="outline-2">
-<h2 id="orgf21cc7f">Emacs.org</h2>
-<div class="outline-text-2" id="text-orgf21cc7f">
+<div id="outline-container-org42cd7b8" class="outline-2">
+<h2 id="org42cd7b8">Emacs.org</h2>
+<div class="outline-text-2" id="text-org42cd7b8">
 <p>
 Here's how I have set this up.
 </p>
@@ -74,9 +74,9 @@ This line causes all SRC blocks to tangle to that file.
 </p>
 </div>
 
-<div id="outline-container-org0208372" class="outline-3">
-<h3 id="org0208372">Notes on This Iteration</h3>
-<div class="outline-text-3" id="text-org0208372">
+<div id="outline-container-org24282c9" class="outline-3">
+<h3 id="org24282c9">Notes on This Iteration</h3>
+<div class="outline-text-3" id="text-org24282c9">
 <p>
 I am sharing this emacs config knowing full well that it is broken in several places.
 Fixing the places it is broken is one of the main impetuses for doing this project.
@@ -89,9 +89,9 @@ Without further ado, here is my <code>emacs.org</code> file as it stands on 29 M
 </div>
 </div>
 
-<div id="outline-container-org3c3a9c3" class="outline-2">
-<h2 id="org3c3a9c3">Emacs</h2>
-<div class="outline-text-2" id="text-org3c3a9c3">
+<div id="outline-container-orgbd19591" class="outline-2">
+<h2 id="orgbd19591">Emacs</h2>
+<div class="outline-text-2" id="text-orgbd19591">
 <p>
 This file contains the source for my emacs config, which is then generated into my ~/.emacs.d directory via org-babel.
 This inspration for this setup is <a href="https://github.com/mclear-tools/dotfiles">this dotfile</a> which I found while searching about creating a literate emacs config.
@@ -102,9 +102,9 @@ There will be zero comments in my init.el file.
 </p>
 </div>
 
-<div id="outline-container-orgc5832b9" class="outline-3">
-<h3 id="orgc5832b9">Initial Setup</h3>
-<div class="outline-text-3" id="text-orgc5832b9">
+<div id="outline-container-orgcd3c4c1" class="outline-3">
+<h3 id="orgcd3c4c1">Initial Setup</h3>
+<div class="outline-text-3" id="text-orgcd3c4c1">
 <p>
 Debugging essentials.
 This turns debugging on to begin with. 
@@ -120,23 +120,23 @@ I switch it back off at the end.
 
 <p>
 This sets up all the things needed for all the subsequent things.
-Specifically, the `package` and `use-package` packages.
+Specifically, the <code>package</code> and <code>use-package</code> packages.
 I have also added the code used to track loading time.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (<span style="color: #ff79c6; font-weight: bold;">defconst</span> <span style="color: #f8f8f2;">emacs-start-time</span> (current-time))
-  (<span style="color: #ff79c6; font-weight: bold;">require</span> `package)
+  (<span style="color: #ff79c6; font-weight: bold;">require</span> '<span style="color: #8be9fd;">package</span>)
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> package-enable-at-startup nil)
-  (<span style="color: #ff79c6; font-weight: bold;">setq</span> package-archives `((<span style="color: #f1fa8c;">"org"</span>  . <span style="color: #f1fa8c;">"http://orgmode.org/elpa/"</span>)
+  (<span style="color: #ff79c6; font-weight: bold;">setq</span> package-archives '((<span style="color: #f1fa8c;">"org"</span>  . <span style="color: #f1fa8c;">"http://orgmode.org/elpa/"</span>)
                           (<span style="color: #f1fa8c;">"gnu"</span>   . <span style="color: #f1fa8c;">"http://elpa.gnu.org/packages/"</span>)
                           (<span style="color: #f1fa8c;">"melpa"</span> . <span style="color: #f1fa8c;">"http://melpa.org/packages/"</span>)))
   (package-initialize)
 
-  (<span style="color: #ff79c6; font-weight: bold;">unless</span> (package-installed-p `use-package)
+  (<span style="color: #ff79c6; font-weight: bold;">unless</span> (package-installed-p 'use-package)
     (package-refresh-contents)
-    (package-install `use-package))
-  (<span style="color: #ff79c6; font-weight: bold;">require</span> `use-package)
+    (package-install 'use-package))
+  (<span style="color: #ff79c6; font-weight: bold;">require</span> '<span style="color: #8be9fd;">use-package</span>)
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> use-package-always-ensure t)
   (<span style="color: #ff79c6; font-weight: bold;">let</span> ((elapsed (float-time (time-subtract (current-time)
                                             emacs-start-time))))
@@ -157,9 +157,9 @@ Setup user info. The setenv here is meant to try to fix an issue described in mo
 </div>
 </div>
 
-<div id="outline-container-orgecc1efe" class="outline-3">
-<h3 id="orgecc1efe">Alarm Bell</h3>
-<div class="outline-text-3" id="text-orgecc1efe">
+<div id="outline-container-orgb058a6a" class="outline-3">
+<h3 id="orgb058a6a">Alarm Bell</h3>
+<div class="outline-text-3" id="text-orgb058a6a">
 <p>
 Replace audible alarms with a visual bell.
 </p>
@@ -177,9 +177,9 @@ Replace audible alarms with a visual bell.
 </div>
 </div>
 
-<div id="outline-container-orgabf138a" class="outline-3">
-<h3 id="orgabf138a">EVIL Mode</h3>
-<div class="outline-text-3" id="text-orgabf138a">
+<div id="outline-container-orgef070ac" class="outline-3">
+<h3 id="orgef070ac">EVIL Mode</h3>
+<div class="outline-text-3" id="text-orgef070ac">
 <p>
 Enable Vim and modal editing.
 This is the area I expect to change and grow the most as I add new evil keybindings.
@@ -201,20 +201,20 @@ This is the area I expect to change and grow the most as I add new evil keybindi
   (global-evil-leader-mode 1)
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> evil-leader/leader <span style="color: #f1fa8c;">"&lt;SPC&gt;"</span>)
   (evil-leader/set-key
-            <span style="color: #f1fa8c;">"e"</span> `helm-find-files
-            <span style="color: #f1fa8c;">"b"</span> `helm-buffers-list
-            <span style="color: #f1fa8c;">"k"</span> `kill-buffer
-            <span style="color: #f1fa8c;">"K"</span> `kill-this-buffer
-            <span style="color: #f1fa8c;">"j"</span> `org-journal-new-entry)
+            <span style="color: #f1fa8c;">"e"</span> 'helm-find-files
+            <span style="color: #f1fa8c;">"b"</span> 'helm-buffers-list
+            <span style="color: #f1fa8c;">"k"</span> 'kill-buffer
+            <span style="color: #f1fa8c;">"K"</span> 'kill-this-buffer
+            <span style="color: #f1fa8c;">"j"</span> 'org-journal-new-entry)
   (evil-mode 1)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf334f5a" class="outline-3">
-<h3 id="orgf334f5a"><span class="todo TODO">TODO</span> Exec-path-from-shell</h3>
-<div class="outline-text-3" id="text-orgf334f5a">
+<div id="outline-container-org23ad464" class="outline-3">
+<h3 id="org23ad464"><span class="todo TODO">TODO</span> Exec-path-from-shell</h3>
+<div class="outline-text-3" id="text-org23ad464">
 <p>
 As part of their ongoing war against developers, the Captains of industry in Cupertino have designed Macs so that GUI Emacs only ever opens up the system shell.
 This is obviously user hostile behavior since their system shell (bash) is from 2007.
@@ -232,9 +232,9 @@ Unfortunately, right now it isn't working for reasons which are unclear to me.
 </div>
 </div>
 
-<div id="outline-container-org66c9d82" class="outline-3">
-<h3 id="org66c9d82">Helm</h3>
-<div class="outline-text-3" id="text-org66c9d82">
+<div id="outline-container-org3f2298c" class="outline-3">
+<h3 id="org3f2298c">Helm</h3>
+<div class="outline-text-3" id="text-org3f2298c">
 <p>
 Helm is the searching framework that I use.
 The primary reason I use this over Ido is because its what Spacemacs uses, so that's what I got used to.
@@ -268,9 +268,9 @@ Much of the configuration for Helm comes from this <a href="https://dev.to/huytd
 </div>
 </div>
 
-<div id="outline-container-orgfc5d33e" class="outline-3">
-<h3 id="orgfc5d33e">Projectile</h3>
-<div class="outline-text-3" id="text-orgfc5d33e">
+<div id="outline-container-org6c6bf4c" class="outline-3">
+<h3 id="org6c6bf4c">Projectile</h3>
+<div class="outline-text-3" id="text-org6c6bf4c">
 <p>
 Projectile is a project management tool.
 I'll need it to replace the fancy parts of PyCharm.
@@ -285,9 +285,9 @@ This will almost certainly be the focus of one or more of my weeks during the Ye
 </div>
 </div>
 </div>
-<div id="outline-container-org9151ec4" class="outline-3">
-<h3 id="org9151ec4">Yasnippet</h3>
-<div class="outline-text-3" id="text-org9151ec4">
+<div id="outline-container-orgf66cf80" class="outline-3">
+<h3 id="orgf66cf80">Yasnippet</h3>
+<div class="outline-text-3" id="text-orgf66cf80">
 <p>
 Yasnippet does snippets and completion.
 Another section ripe for growth. I plan to expand this dramatically once I explore Yasnippets in more detail during the Year of Emacs.
@@ -310,9 +310,9 @@ Another section ripe for growth. I plan to expand this dramatically once I explo
 </div>
 </div>
 
-<div id="outline-container-org664b2ba" class="outline-3">
-<h3 id="org664b2ba"><span class="todo TODO">TODO</span> Company</h3>
-<div class="outline-text-3" id="text-org664b2ba">
+<div id="outline-container-org8e47b85" class="outline-3">
+<h3 id="org8e47b85"><span class="todo TODO">TODO</span> Company</h3>
+<div class="outline-text-3" id="text-org8e47b85">
 <p>
 Company is the auto-completion framework that I use.
 It isn't really fully configured because of an issue I'm currently having with Pyenv and Emacs.
@@ -351,16 +351,16 @@ It isn't really fully configured because of an issue I'm currently having with P
 </div>
 </div>
 
-<div id="outline-container-orgfcc02fe" class="outline-3">
-<h3 id="orgfcc02fe">Python</h3>
-<div class="outline-text-3" id="text-orgfcc02fe">
+<div id="outline-container-orgcb32605" class="outline-3">
+<h3 id="orgcb32605">Python</h3>
+<div class="outline-text-3" id="text-orgcb32605">
 <p>
 This install the tools I use for Python Programming and configures my Python buffers.
 </p>
 </div>
-<div id="outline-container-org7062f21" class="outline-4">
-<h4 id="org7062f21">elpy</h4>
-<div class="outline-text-4" id="text-org7062f21">
+<div id="outline-container-org6812c48" class="outline-4">
+<h4 id="org6812c48">elpy</h4>
+<div class="outline-text-4" id="text-org6812c48">
 <p>
 Elpy is an expansion of the default Python mode.
 This will see significant expansion during my weeks on Python programming in Emacs.
@@ -374,9 +374,9 @@ This will see significant expansion during my weeks on Python programming in Ema
 </div>
 </div>
 
-<div id="outline-container-orge48130d" class="outline-4">
-<h4 id="orge48130d"><span class="todo TODO">TODO</span> Pyenv-mode</h4>
-<div class="outline-text-4" id="text-orge48130d">
+<div id="outline-container-orgdf28819" class="outline-4">
+<h4 id="orgdf28819"><span class="todo TODO">TODO</span> Pyenv-mode</h4>
+<div class="outline-text-4" id="text-orgdf28819">
 <p>
 Pyenv-mode makes elpy pyenv-aware.
 Unfortunately, right now it isn't working because my Emacs refuses to find the dotfiles for zsh, only for the system install of Bash.
@@ -390,17 +390,17 @@ Unfortunately, right now it isn't working because my Emacs refuses to find the d
 </div>
 </div>
 </div>
-<div id="outline-container-org8fa823a" class="outline-3">
-<h3 id="org8fa823a">Org-mode</h3>
-<div class="outline-text-3" id="text-org8fa823a">
+<div id="outline-container-org3da779d" class="outline-3">
+<h3 id="org3da779d">Org-mode</h3>
+<div class="outline-text-3" id="text-org3da779d">
 <p>
 Org-mode is the thing that brought me to Emacs.
 There are a lot of customizations here.
 </p>
 </div>
-<div id="outline-container-org9a07896" class="outline-4">
-<h4 id="org9a07896">Org QoL</h4>
-<div class="outline-text-4" id="text-org9a07896">
+<div id="outline-container-orgebce86c" class="outline-4">
+<h4 id="orgebce86c">Org QoL</h4>
+<div class="outline-text-4" id="text-orgebce86c">
 <p>
 This handles the Quality of life part of Org-mode.
 First, org-bullets beautifies the leading asterisks.
@@ -411,21 +411,21 @@ Finally, we set the global shortcuts for org-store-link, org-agenda, and org-cap
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (<span style="color: #ff79c6; font-weight: bold;">use-package</span> <span style="color: #8be9fd;">org-bullets</span>
     <span style="color: #ffb86c;">:config</span>
-    (add-hook `org-mode-hook
+    (add-hook 'org-mode-hook
       (<span style="color: #ff79c6; font-weight: bold;">lambda</span> () (org-bullets-mode t))))
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> org-hide-leading-stars t)
-  (global-set-key (kbd <span style="color: #f1fa8c;">"C-c l"</span>) `org-store-link)
-  (global-set-key (kbd <span style="color: #f1fa8c;">"C-c a"</span>) `org-agenda)
-  (global-set-key (kbd <span style="color: #f1fa8c;">"C-c c"</span>) `org-capture)
-  (add-hook `org-mode-hook `org-indent-mode)
+  (global-set-key (kbd <span style="color: #f1fa8c;">"C-c l"</span>) 'org-store-link)
+  (global-set-key (kbd <span style="color: #f1fa8c;">"C-c a"</span>) 'org-agenda)
+  (global-set-key (kbd <span style="color: #f1fa8c;">"C-c c"</span>) 'org-capture)
+  (add-hook 'org-mode-hook 'org-indent-mode)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0e9a042" class="outline-4">
-<h4 id="org0e9a042">Source Editing</h4>
-<div class="outline-text-4" id="text-org0e9a042">
+<div id="outline-container-org0091f08" class="outline-4">
+<h4 id="org0091f08">Source Editing</h4>
+<div class="outline-text-4" id="text-org0091f08">
 <p>
 These settings beautify the SRC blocks in Org-mode documents by adding syntax highlighting.
 Essential for how I'm doing my dotfiles.
@@ -437,9 +437,9 @@ Essential for how I'm doing my dotfiles.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb309aaa" class="outline-4">
-<h4 id="orgb309aaa">Org Babel</h4>
-<div class="outline-text-4" id="text-orgb309aaa">
+<div id="outline-container-org588c3a6" class="outline-4">
+<h4 id="org588c3a6">Org Babel</h4>
+<div class="outline-text-4" id="text-org588c3a6">
 <p>
 Org Babel is what does the tangling of source blocks into separate programs.
 For now, this just sets our language list.
@@ -447,7 +447,7 @@ For now, this just sets our language list.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (org-babel-do-load-languages
     'org-babel-load-languages
-        `((python     . t)
+        '((python     . t)
           (emacs-lisp . t)
           (shell      . t)
           (latex      . t)
@@ -466,9 +466,9 @@ These settings prevent the conversion of spaces into tabs (necessary for Python 
 </div>
 </div>
 
-<div id="outline-container-orgea31d59" class="outline-4">
-<h4 id="orgea31d59">Academic Paper Writing</h4>
-<div class="outline-text-4" id="text-orgea31d59">
+<div id="outline-container-org10ee7b4" class="outline-4">
+<h4 id="org10ee7b4">Academic Paper Writing</h4>
+<div class="outline-text-4" id="text-org10ee7b4">
 <p>
 Here are the settings I have used for writing academic papers.
 I write my papers in orgmode, then export them to PDF via LaTeX.
@@ -481,10 +481,10 @@ This sets the master bibtex file.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (<span style="color: #ff79c6; font-weight: bold;">use-package</span> <span style="color: #8be9fd;">helm-bibtex</span>
     <span style="color: #ffb86c;">:config</span>
-    (<span style="color: #ff79c6; font-weight: bold;">setq</span> helm-bibtex-bibliography `(<span style="color: #f1fa8c;">"~/zotero.bib"</span>))
-    (add-hook `Tex-mode-hook
-              (<span style="color: #ff79c6; font-weight: bold;">lambda</span> () (define-key Tex-mode-map <span style="color: #f1fa8c;">"\C-ch"</span> `helm-bibtex))))
-  (<span style="color: #ff79c6; font-weight: bold;">setq</span> reftex-default-bibliography `(<span style="color: #f1fa8c;">"~/zotero.bib"</span>))
+    (<span style="color: #ff79c6; font-weight: bold;">setq</span> helm-bibtex-bibliography '(<span style="color: #f1fa8c;">"~/zotero.bib"</span>))
+    (add-hook 'Tex-mode-hook
+              (<span style="color: #ff79c6; font-weight: bold;">lambda</span> () (define-key Tex-mode-map <span style="color: #f1fa8c;">"\C-ch"</span> 'helm-bibtex))))
+  (<span style="color: #ff79c6; font-weight: bold;">setq</span> reftex-default-bibliography '(<span style="color: #f1fa8c;">"~/zotero.bib"</span>))
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> bibtex-completion-pdf-field <span style="color: #f1fa8c;">"file"</span>)
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> helm-bibtex-notes-path <span style="color: #f1fa8c;">"~/nextcloud/org/debugging/litreview.org"</span>)
 </pre>
@@ -544,13 +544,13 @@ This describes the export process from orgmode to LaTeX to PDF.
 </div>
 </div>
 
-<div id="outline-container-org53bc82f" class="outline-4">
-<h4 id="org53bc82f"><span class="todo TODO">TODO</span> PDF-tools</h4>
-<div class="outline-text-4" id="text-org53bc82f">
+<div id="outline-container-orge7572d3" class="outline-4">
+<h4 id="orge7572d3"><span class="todo TODO">TODO</span> PDF-tools</h4>
+<div class="outline-text-4" id="text-orge7572d3">
 </div>
-<div id="outline-container-org613fac3" class="outline-5">
-<h5 id="org613fac3">Linux Install</h5>
-<div class="outline-text-5" id="text-org613fac3">
+<div id="outline-container-orga5d0a8e" class="outline-5">
+<h5 id="orga5d0a8e">Linux Install</h5>
+<div class="outline-text-5" id="text-orga5d0a8e">
 <p>
 The shell block below installs the libraries needed to run this on Linux.
 There is another workflow you have to use on MacOS, but I have not gotten it to work yet
@@ -565,9 +565,9 @@ sudo apt install imagemagick
 </div>
 </div>
 </div>
-<div id="outline-container-orgcce2796" class="outline-5">
-<h5 id="orgcce2796">MacOS Install</h5>
-<div class="outline-text-5" id="text-orgcce2796">
+<div id="outline-container-org8093d20" class="outline-5">
+<h5 id="org8093d20">MacOS Install</h5>
+<div class="outline-text-5" id="text-org8093d20">
 <p>
 If anybody knows how to do this and have it work...
 So far, emacs cannot find libffi despite it being added to several different paths that it should be able to see.
@@ -575,9 +575,9 @@ So far, emacs cannot find libffi despite it being added to several different pat
 </div>
 </div>
 
-<div id="outline-container-orgf3dab43" class="outline-5">
-<h5 id="orgf3dab43">PDF-tools config</h5>
-<div class="outline-text-5" id="text-orgf3dab43">
+<div id="outline-container-orgdf14fc9" class="outline-5">
+<h5 id="orgdf14fc9">PDF-tools config</h5>
+<div class="outline-text-5" id="text-orgdf14fc9">
 <p>
 PDF-tools allows me to annotate and view pdfs INSIDE emacs.
 This ties in with helm-bibtex for lit reviews.
@@ -608,9 +608,9 @@ It's super awesome when it works, but thanks to Apple....
 </div>
 </div>
 
-<div id="outline-container-org7577615" class="outline-4">
-<h4 id="org7577615">Agenda Settings</h4>
-<div class="outline-text-4" id="text-org7577615">
+<div id="outline-container-org6a32766" class="outline-4">
+<h4 id="org6a32766">Agenda Settings</h4>
+<div class="outline-text-4" id="text-org6a32766">
 <p>
 I use org-journal for taking Notes during the day as part of the Agile Results methodology.
 </p>
@@ -648,15 +648,15 @@ This is necessary so that tags don't overflow into the next line.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (<span style="color: #ff79c6; font-weight: bold;">defun</span> <span style="color: #50fa7b; font-weight: bold;">my/disable-line-numbers</span> (<span style="color: #bd93f9;">&amp;rest</span> __)
     (display-line-numbers-mode -1))
-  (add-hook `org-agenda-finalize-hook `my/disable-line-numbers) 
+  (add-hook 'org-agenda-finalize-hook 'my/disable-line-numbers) 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org808ba2b" class="outline-4">
-<h4 id="org808ba2b">Org-capture</h4>
-<div class="outline-text-4" id="text-org808ba2b">
+<div id="outline-container-orge1270ae" class="outline-4">
+<h4 id="orge1270ae">Org-capture</h4>
+<div class="outline-text-4" id="text-orge1270ae">
 <p>
 Setup for org-capture.
 I currently am only using a todo capture, but I will be adding captures for behavior and class notes over the summer.
@@ -671,9 +671,9 @@ I currently am only using a todo capture, but I will be adding captures for beha
 </div>
 </div>
 </div>
-<div id="outline-container-org8530e90" class="outline-4">
-<h4 id="org8530e90">Org2Web</h4>
-<div class="outline-text-4" id="text-org8530e90">
+<div id="outline-container-org441ff38" class="outline-4">
+<h4 id="org441ff38">Org2Web</h4>
+<div class="outline-text-4" id="text-org441ff38">
 <p>
 I use org2web to publish my Github Pages account.
 This configuration will need to be tweaked as I am aware of at least a few issues with how the page is displaying.
@@ -683,7 +683,7 @@ This configuration will need to be tweaked as I am aware of at least a few issue
 <pre class="src src-emacs-lisp">(<span style="color: #ff79c6; font-weight: bold;">use-package</span> <span style="color: #8be9fd;">org2web</span>
   <span style="color: #ffb86c;">:config</span>
   (org2web-add-project
-    `(<span style="color: #f1fa8c;">"jonathanabennett.github.io"</span>
+    '(<span style="color: #f1fa8c;">"jonathanabennett.github.io"</span>
       <span style="color: #ffb86c;">:repository-directory</span> <span style="color: #f1fa8c;">"~/nextcloud/org/blog/"</span>
       <span style="color: #ffb86c;">:remote</span> (git <span style="color: #f1fa8c;">"git@github.com:jonathanabennett/jonathanabennett.github.io.git"</span> <span style="color: #f1fa8c;">"master"</span>)
       <span style="color: #ffb86c;">:site-domain</span> <span style="color: #f1fa8c;">"https://jonathanabennett.github.io/"</span>
@@ -697,9 +697,9 @@ This configuration will need to be tweaked as I am aware of at least a few issue
 </div>
 </div>
 
-<div id="outline-container-orgaf67815" class="outline-3">
-<h3 id="orgaf67815">Dash</h3>
-<div class="outline-text-3" id="text-orgaf67815">
+<div id="outline-container-org8cf90aa" class="outline-3">
+<h3 id="org8cf90aa">Dash</h3>
+<div class="outline-text-3" id="text-org8cf90aa">
 <p>
 Copied from Sacha Chua's dotfile.
 This looks like it isn't relevant for me because focused on elisp.
@@ -707,9 +707,9 @@ I've dropped this header here as a note in case I need it later.
 </p>
 </div>
 </div>
-<div id="outline-container-orgad2c40d" class="outline-3">
-<h3 id="orgad2c40d">Winner</h3>
-<div class="outline-text-3" id="text-orgad2c40d">
+<div id="outline-container-orgb1b771a" class="outline-3">
+<h3 id="orgb1b771a">Winner</h3>
+<div class="outline-text-3" id="text-orgb1b771a">
 <p>
 Copied from Sacha Chua's dotfile. I don't understand what this does yet so I haven't added it.
 But it is on my list of things to research in Emacs.
@@ -717,9 +717,9 @@ But it is on my list of things to research in Emacs.
 </div>
 </div>
 
-<div id="outline-container-org93bd20d" class="outline-3">
-<h3 id="org93bd20d">Which-key</h3>
-<div class="outline-text-3" id="text-org93bd20d">
+<div id="outline-container-org94a0e1c" class="outline-3">
+<h3 id="org94a0e1c">Which-key</h3>
+<div class="outline-text-3" id="text-org94a0e1c">
 <p>
 Which-key tells you what keys can complete the chord you have started.
 This is an essential package when you're learning Emacs.
@@ -739,35 +739,35 @@ It should be in the init.el of every beginner.
 </div>
 </div>
 
-<div id="outline-container-org2139752" class="outline-3">
-<h3 id="org2139752">Theme</h3>
-<div class="outline-text-3" id="text-org2139752">
+<div id="outline-container-org071e00d" class="outline-3">
+<h3 id="org071e00d">Theme</h3>
+<div class="outline-text-3" id="text-org071e00d">
 <p>
 Currently using Dracula, but this is where it would get changed.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (<span style="color: #ff79c6; font-weight: bold;">use-package</span> <span style="color: #8be9fd;">dracula-theme</span>
-    <span style="color: #ffb86c;">:init</span> (load-theme `dracula t))
+    <span style="color: #ffb86c;">:init</span> (load-theme 'dracula t))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org784aec3" class="outline-3">
-<h3 id="org784aec3">ERC</h3>
-<div class="outline-text-3" id="text-org784aec3">
+<div id="outline-container-org3408717" class="outline-3">
+<h3 id="org3408717">ERC</h3>
+<div class="outline-text-3" id="text-org3408717">
 <p>
 I use ERC to chat.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (eval-after-load <span style="color: #f1fa8c;">"erc"</span>
-    `(<span style="color: #ff79c6; font-weight: bold;">progn</span>
+    '(<span style="color: #ff79c6; font-weight: bold;">progn</span>
       (<span style="color: #ff79c6; font-weight: bold;">setq</span> erc-nick <span style="color: #f1fa8c;">"doulos05"</span>)
       (<span style="color: #ff79c6; font-weight: bold;">setq</span> erc-user-full-name <span style="color: #f1fa8c;">"Jonathan Bennett"</span>)
       (<span style="color: #ff79c6; font-weight: bold;">setq</span> erc-autojoin-channels-alist
-        `((<span style="color: #f1fa8c;">"irc.freenode.net"</span> <span style="color: #f1fa8c;">"#python"</span>)))))
+        '((<span style="color: #f1fa8c;">"irc.freenode.net"</span> <span style="color: #f1fa8c;">"#python"</span>)))))
 
   (<span style="color: #ff79c6; font-weight: bold;">defun</span> <span style="color: #50fa7b; font-weight: bold;">my-erc</span> ()
     (<span style="color: #ff79c6; font-weight: bold;">interactive</span>)
@@ -777,9 +777,9 @@ I use ERC to chat.
 </div>
 </div>
 
-<div id="outline-container-org78f0e17" class="outline-3">
-<h3 id="org78f0e17">Magit</h3>
-<div class="outline-text-3" id="text-org78f0e17">
+<div id="outline-container-org79cb99e" class="outline-3">
+<h3 id="org79cb99e">Magit</h3>
+<div class="outline-text-3" id="text-org79cb99e">
 <p>
 Magit is git in Emacs.
 Magit is AMAZING.
@@ -794,17 +794,17 @@ It will be interesting to see how much this section changes when I come to it du
 </div>
 </div>
 
-<div id="outline-container-org565dcd7" class="outline-3">
-<h3 id="org565dcd7">Misc</h3>
-<div class="outline-text-3" id="text-org565dcd7">
+<div id="outline-container-org58237d4" class="outline-3">
+<h3 id="org58237d4">Misc</h3>
+<div class="outline-text-3" id="text-org58237d4">
 <p>
 Here are miscellaneous configurations
 </p>
 </div>
 
-<div id="outline-container-orge9922d2" class="outline-4">
-<h4 id="orge9922d2">Backup File management</h4>
-<div class="outline-text-4" id="text-orge9922d2">
+<div id="outline-container-org17c29b0" class="outline-4">
+<h4 id="org17c29b0">Backup File management</h4>
+<div class="outline-text-4" id="text-org17c29b0">
 <p>
 I use git for backup of all my text files.
 I don't need backup files from emacs, they just clutter the space.
@@ -820,9 +820,9 @@ This removes all backup files.
 </div>
 </div>
 
-<div id="outline-container-orgc3dd354" class="outline-4">
-<h4 id="orgc3dd354">Editing QOL</h4>
-<div class="outline-text-4" id="text-orgc3dd354">
+<div id="outline-container-orgbaad856" class="outline-4">
+<h4 id="orgbaad856">Editing QOL</h4>
+<div class="outline-text-4" id="text-orgbaad856">
 <p>
 This section does the following in order:
 </p>
@@ -839,9 +839,9 @@ This section does the following in order:
 <pre class="src src-emacs-lisp">  (show-paren-mode 1)
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> sentence-end-double-space nil)
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> scroll-step 1)
-  (<span style="color: #ff79c6; font-weight: bold;">setq</span> mouse-wheel-scroll-amount `(1 ((shift) . 1)))
+  (<span style="color: #ff79c6; font-weight: bold;">setq</span> mouse-wheel-scroll-amount '(1 ((shift) . 1)))
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> mouse-wheel-progressive-speed nil)
-  (<span style="color: #ff79c6; font-weight: bold;">setq</span> mouse-wheel-follow-mouse `t)
+  (<span style="color: #ff79c6; font-weight: bold;">setq</span> mouse-wheel-follow-mouse 't)
   (<span style="color: #ff79c6; font-weight: bold;">setq</span> redisplay-dont-pause t)
   (global-visual-line-mode 1)
   (<span style="color: #ff79c6; font-weight: bold;">when</span> (version&lt;= <span style="color: #f1fa8c;">"26.0.50"</span> emacs-version )
@@ -853,9 +853,9 @@ This section does the following in order:
 </div>
 </div>
 
-<div id="outline-container-org150f002" class="outline-3">
-<h3 id="org150f002">Wrapup</h3>
-<div class="outline-text-3" id="text-org150f002">
+<div id="outline-container-orgae7370c" class="outline-3">
+<h3 id="orgae7370c">Wrapup</h3>
+<div class="outline-text-3" id="text-orgae7370c">
 <p>
 Unset debugging mode and print how long it took to launch
 </p>
